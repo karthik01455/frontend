@@ -24,3 +24,7 @@ export const CREATE_CONTENT_TYPE = {
   url: `${CONTENT_TYPE_BACKEND_URL}/contentTypes`,
   method: 'POST',
 };
+export const GET_COLLECTIONS_BY_CONTENT_TYPE_ID = (id) => ({
+  url: `${CONTENT_TYPE_BACKEND_URL}/collections/contentId/${id}`,
+  method: 'GET',
+});
