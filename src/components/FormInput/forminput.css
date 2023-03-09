@@ -1,0 +1,11 @@
+.formInput {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 25px;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid gray;
+}
