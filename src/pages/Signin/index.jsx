@@ -1,7 +1,7 @@
 import React from 'react';
 import './Signin.css';
 import SigninImage from '../../components/LoginImage';
-import SigninForm from '../../components/LoginForm';
+import SigninForm from '../../components/SigninForm';
 
 export default function Signin() {
   return (

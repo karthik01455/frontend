@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+.signin-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  height: 100vh;
+}
+.signin-form-header {
+  color: white;
+  font-weight: bolder;
+  font-size: x-large;
+  margin-top: 100px;
+  font-family: Montserrat;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+}
+.signin-form-input-text {
+  color: grey;
+  padding: 2.5%;
+  font-family: Montserrat;
+  font-size: small;
+}
+.signin-button {
+  margin-top: 10%;
+  background-image: linear-gradient(
+    to right,
+    #a254e7 0%,
+    #8031ad 51%,
+    #6c2c7e 100%
+  );
+  font-family: Montserrat;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  height: 35px;
+  width: 290px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: large;
+  cursor: pointer;
+}
+.signin-form-forget-password {
+  color: grey;
+  padding: 2.5%;
+  margin-top: 3%;
+  font-family: Montserrat;
+  font-size: small;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}

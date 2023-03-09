@@ -1,0 +1,21 @@
+.home-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 189vh;
+}
+.collection-types {
+  width: 23%;
+  height: 100vh;
+  background-color: red;
+}
+.content-types {
+  width: 23%;
+  height: 100vh;
+  background-color: aqua;
+}
+.content-type-values {
+  width: 54%;
+  height: 100vh;
+  background-color: blue;
+}
