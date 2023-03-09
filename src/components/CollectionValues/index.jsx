@@ -23,6 +23,7 @@ export default function CollectionValues() {
   );
   const [collectionList, setCollectionList] = useState({});
   useEffect(() => {
+    // setContentFiels({});
     if (contentType) {
       makeRequest(
         CONTENT_TYPE_BACKEND_URL,
@@ -34,6 +35,8 @@ export default function CollectionValues() {
         res.Types.map((item) => {
           addNewCollectionList[item] = '';
         });
+        console.log('addNewCollectionList', addNewCollectionList);
+        setCollectionList(addNewCollectionList);
 
         console.log('contentFiels', contentFiels);
       });
@@ -156,6 +159,7 @@ export default function CollectionValues() {
       )}
       <div className='cv-header'>
         {contentType && contentType.contentTypeName}
+        {/* {contentTypeList && JSON.stringify(contentTypeList)} */}
       </div>
       {collectionList && JSON.stringify(collectionList)}
       <div className='cv-info'>

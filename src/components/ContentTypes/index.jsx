@@ -109,6 +109,7 @@ export default function ContentTypes() {
                 }}
               >
                 {item.contentTypeName}
+                {item.count}C
               </div>
             );
           })}
