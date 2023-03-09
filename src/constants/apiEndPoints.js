@@ -20,3 +20,7 @@ export const UPDATE_CONTENT_TYPE_BY_ID = (id) => ({
   url: `${CONTENT_TYPE_BACKEND_URL}/contentTypes/${id}`,
   method: 'PUT',
 });
+export const CREATE_CONTENT_TYPE = {
+  url: `${CONTENT_TYPE_BACKEND_URL}/contentTypes`,
+  method: 'POST',
+};
