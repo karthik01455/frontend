@@ -4,7 +4,9 @@ import makeRequest from '../utils/makeRequest';
 import {
   CONTENT_TYPE_BACKEND_URL,
   GET_ALL_CONTENT_TYPE,
+  GET_CONTENT_TYPE_BY_ID,
 } from '../constants/apiEndPoints';
+
 export const CollectionDataContext = createContext({});
 
 export function CollectionDataProvider({ children }) {

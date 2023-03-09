@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import './Home.css';
 import CollectionTypes from '../../components/CollectionTypes';
 import ContentTypes from '../../components/ContentTypes';
+import CollectionValues from '../../components/CollectionValues';
 import ContentTypeValues from '../../components/ContentTypeValues';
 import { ContentTypeDataContext } from '../../contexts/ContentTypeData';
 import { CollectionDataContext } from '../../contexts/CollectionData';
-
 export default function Home() {
   const { contentTypeSelected, setcontentTypeSelected } = useContext(
     ContentTypeDataContext
@@ -30,7 +30,11 @@ export default function Home() {
           HI
         </div>
       )}
-      {collectionSelected && <div className='collection-values'></div>}
+      {collectionSelected && (
+        <div className='collection-values'>
+          <CollectionValues />
+        </div>
+      )}
     </div>
   );
 }

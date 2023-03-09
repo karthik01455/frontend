@@ -28,3 +28,15 @@ export const GET_COLLECTIONS_BY_CONTENT_TYPE_ID = (id) => ({
   url: `${CONTENT_TYPE_BACKEND_URL}/collections/contentId/${id}`,
   method: 'GET',
 });
+export const CREATE_COLLECTION = {
+  url: `${CONTENT_TYPE_BACKEND_URL}/collections`,
+  method: 'POST',
+};
+export const UPDATE_COLLECTION_BY_ID = (id) => ({
+  url: `${CONTENT_TYPE_BACKEND_URL}/collections/${id}`,
+  method: 'PUT',
+});
+export const DELETE_COLLECTION_BY_ID = (id) => ({
+  url: `${CONTENT_TYPE_BACKEND_URL}/collections/${id}`,
+  method: 'DELETE',
+});
