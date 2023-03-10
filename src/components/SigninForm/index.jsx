@@ -4,11 +4,7 @@ import './SigninForm.css';
 import FormInput from '../../components/FormInput';
 import { useNavigate } from 'react-router-dom';
 import makeRequest from '../../utils/makeRequest';
-import {
-  AUTH_BACKEND_URL,
-  CREATE_USER,
-  LOGIN,
-} from '../../constants/apiEndPoints';
+import { AUTH_BACKEND_URL, CREATE_USER } from '../../constants/apiEndPoints';
 
 export default function SignInForm() {
   const navigate = useNavigate();
@@ -53,7 +49,7 @@ export default function SignInForm() {
 
     // setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
-  const handleSubmitSignIn = async (event) => {
+  const handleSubmitSignIn = async () => {
     if (!pattern.email.test(fields.email)) {
       setErrors((prevErrors) => ({ ...prevErrors, email: 'Invalid Email' }));
       return;
@@ -66,23 +62,6 @@ export default function SignInForm() {
     }).then((res) => {
       console.log('res', res);
       if (res !== undefined) navigate(`/login`);
-    });
-  };
-  const handleSubmitLogin = async (event) => {
-    if (!pattern.email.test(fields.email)) {
-      setErrors((prevErrors) => ({ ...prevErrors, email: 'Invalid Email' }));
-      return;
-    }
-    makeRequest(AUTH_BACKEND_URL, LOGIN, {
-      data: {
-        userName: fields.userName,
-        emailId: fields.email,
-        password: fields.password,
-      },
-    }).then((res) => {
-      console.log('res-token', res);
-      localStorage.setItem('jwtToken', res);
-      console.log('local storage', localStorage.getItem('jwtToken'));
     });
   };
 

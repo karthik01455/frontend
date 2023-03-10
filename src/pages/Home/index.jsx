@@ -7,17 +7,12 @@ import ContentTypeValues from '../../components/ContentTypeValues';
 import { ContentTypeDataContext } from '../../contexts/ContentTypeData';
 import { CollectionDataContext } from '../../contexts/CollectionData';
 export default function Home() {
-  const { contentTypeSelected, setcontentTypeSelected } = useContext(
-    ContentTypeDataContext
-  );
-  const { collectionSelected, setCollectionSelected } = useContext(
-    CollectionDataContext
-  );
+  const { contentTypeSelected } = useContext(ContentTypeDataContext);
+  const { collectionSelected } = useContext(CollectionDataContext);
   return (
     <div className='home-container'>
       <div className='collection-types'>
         <CollectionTypes />
-        HI
       </div>
       {contentTypeSelected && (
         <div className='content-types'>
@@ -27,7 +22,6 @@ export default function Home() {
       {contentTypeSelected && (
         <div className='content-type-values'>
           <ContentTypeValues />
-          HI
         </div>
       )}
       {collectionSelected && (

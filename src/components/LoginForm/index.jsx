@@ -3,18 +3,22 @@ import React, { useState, useContext } from 'react';
 import './LoginForm.css';
 import FormInput from '../../components/FormInput';
 import makeRequest from '../../utils/makeRequest';
-import {
-  AUTH_BACKEND_URL,
-  CREATE_USER,
-  LOGIN,
-} from '../../constants/apiEndPoints';
-
+import { AUTH_BACKEND_URL, LOGIN } from '../../constants/apiEndPoints';
 import { useNavigate } from 'react-router-dom';
 import { LoginDataContext } from '../../contexts/LoginData';
+import { ContentTypeDataContext } from '../../contexts/ContentTypeData';
+import { CollectionDataContext } from '../../contexts/CollectionData';
 
 export default function LoginForm() {
   const navigate = useNavigate();
-  const { emailId, setEmailId } = useContext(LoginDataContext);
+  const { setcontentTypeSelected } = useContext(ContentTypeDataContext);
+  const { setCollectionSelected } = useContext(CollectionDataContext);
+
+  setCollectionSelected(false);
+  setcontentTypeSelected(false);
+
+  const { setEmailId } = useContext(LoginDataContext);
+
   const inputs = [
     {
       id: 1,
@@ -56,21 +60,8 @@ export default function LoginForm() {
 
     // setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
-  const handleSubmitSignIn = async (event) => {
-    if (!pattern.email.test(fields.email)) {
-      setErrors((prevErrors) => ({ ...prevErrors, email: 'Invalid Email' }));
-      return;
-    }
-    makeRequest(AUTH_BACKEND_URL, CREATE_USER, {
-      data: {
-        emailId: fields.email,
-        password: fields.password,
-      },
-    }).then((res) => {
-      console.log(res);
-    });
-  };
-  const handleSubmitLogin = async (event) => {
+
+  const handleSubmitLogin = async () => {
     if (!pattern.email.test(fields.email)) {
       setErrors((prevErrors) => ({ ...prevErrors, email: 'Invalid Email' }));
       return;
@@ -85,7 +76,7 @@ export default function LoginForm() {
       localStorage.setItem('jwtToken', res);
       console.log('local storage', localStorage.getItem('jwtToken'));
       setEmailId(fields.email);
-      navigate(`/Home`);
+      if (localStorage.getItem('jwtToken')) navigate(`/Home`);
     });
   };
 
@@ -130,7 +121,9 @@ export default function LoginForm() {
           Login
         </button>
         <div className='login-form-forget-password'>
-          <a>Forgot password?</a>
+          <a>
+            <u>Forgot password?</u>
+          </a>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './forminput.css';
 // eslint-disable-next-line react/prop-types
-const FormInput = ({ label, type, name, value, onChange, errorMessage }) => {
+const FormInput = ({ type, name, value, onChange, errorMessage }) => {
   return (
     <div>
       <input

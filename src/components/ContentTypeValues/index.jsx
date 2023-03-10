@@ -6,13 +6,22 @@ import {
   UPDATE_CONTENT_TYPE_BY_ID,
 } from '../../constants/apiEndPoints';
 import { ContentTypeDataContext } from '../../contexts/ContentTypeData';
+import { LoginDataContext } from '../../contexts/LoginData';
+import UserPencil from '../../assets/user-pencil/user-pencil3x.png';
+import Trash from '../../assets/trash/trash3x.png';
 export default function ContentTypeValues() {
+  const { emailId } = useContext(LoginDataContext);
+
   const { contentTypeData, setcontentTypeData } = useContext(
     ContentTypeDataContext
   );
   const { contentTypeList, setcontentTypeList } = useContext(
     ContentTypeDataContext
   );
+  useEffect(() => {
+    setcontentTypeData(null);
+  }, [emailId]);
+
   const [modal, setModal] = useState(false);
   const [modalValue, setModalValue] = useState('');
   const handleChangeModalValue = (event) => {
@@ -30,6 +39,7 @@ export default function ContentTypeValues() {
   const closeModal = () => {
     if (editContentTypeName) {
       let newContentTypeData = { ...contentTypeData };
+
       newContentTypeData.contentTypeName = modalValue;
       setcontentTypeData(newContentTypeData);
       makeRequest(
@@ -52,9 +62,15 @@ export default function ContentTypeValues() {
       });
       setcontentTypeList(newContentTypeList);
       setEditContentTypeName(false);
+      setModalValue('');
       setModal(false);
     } else if (editContentTypeValue.true) {
       let newContentTypeData = { ...contentTypeData };
+      // check if value already exists
+      if (newContentTypeData.Types.includes(modalValue)) {
+        alert('Value already exists');
+        return;
+      }
       newContentTypeData.Types[editContentTypeValue.index] = modalValue;
       setcontentTypeData(newContentTypeData);
       makeRequest(
@@ -73,6 +89,11 @@ export default function ContentTypeValues() {
       setModal(false);
     } else {
       let newContentTypeData = { ...contentTypeData };
+      // check if value already exists
+      if (newContentTypeData.Types.includes(modalValue)) {
+        alert('Value already exists');
+        return;
+      }
       newContentTypeData.Types.push(modalValue);
       setcontentTypeData(newContentTypeData);
       setModal(false);
@@ -103,18 +124,12 @@ export default function ContentTypeValues() {
     setModal(true);
     setEditContentTypeName(true);
   };
-
-  const { contentType, setcontentType } = useContext(ContentTypeDataContext);
-  // const { contentTypeList } = useContext(ContentTypeDataContext);
-  const { contentTypeSelected, setcontentTypeSelected } = useContext(
-    ContentTypeDataContext
-  );
   return contentTypeData ? (
     <div className='content-type-values-container'>
-      <div className='content-type-values-header'></div>
+      <div className='content-type-header-top'></div>
       <div
         className='content-type-modal'
-        style={{ display: modal ? 'block' : 'none' }}
+        style={{ display: modal ? 'flex' : 'none' }}
       >
         <div className='content-type-modal-content'>
           <input
@@ -122,43 +137,66 @@ export default function ContentTypeValues() {
             value={modalValue}
             onChange={handleChangeModalValue}
           />
-          <button onClick={closeModal}>Add</button>
+          <button onClick={closeModal}>Save</button>
+          <button
+            onClick={() => {
+              setModal(false);
+              setEditContentTypeName(false);
+              setEditContentTypeValue(false);
+            }}
+          >
+            Cancel
+          </button>
         </div>
       </div>
-      <div className='ctv-header'>
+      <div className='content-type-values-header'>
         <div>
           {' '}
           <h1> {contentTypeData.contentTypeName}</h1>
         </div>
-
-        <button onClick={addField}> Add field</button>
-        <button onClick={saveContentType}>Save</button>
-        <button onClick={handleEditContentTypeName}>Edit</button>
+        {/* <button onClick={addField}> Add field</button> */}
+        <img
+          onClick={handleEditContentTypeName}
+          src={UserPencil}
+          className='icon-utils'
+          alt='user-pencil'
+        />{' '}
+        <div className='save' onClick={saveContentType}>
+          SAVE
+        </div>
+        {/* <button onClick={handleEditContentTypeName}>Edit</button> */}
       </div>
-      <div className='ctv-count'>{contentTypeData.Types.length} Fields</div>
-      <div className='ctv-list'>
+      <div className='content-type-values-count'>
+        {contentTypeData.Types.length} Fields
+      </div>
+      <div className='content-type-values-list'>
+        <div className='content-type-values-add-item' onClick={addField}>
+          Add another field
+        </div>
         {contentTypeData.Types.map((item, index) => {
           return (
-            <div key={item.id} className='ctv-list-item'>
-              <div className='ctv-list-left'>Ab</div>
-              <div className='ctv-list-item-name'>{item}</div>
+            <div key={item.id} className='content-type-values-list-item'>
+              <div className='content-type-values-list-left'>Ab</div>
+              <div className='content-type-values-list-item-name'>{item}</div>
               <div> text</div>
-              <div className='ctv-list-utils'>
-                {' '}
-                <button
+              <div className='content-type-values-list-utils'>
+                <img
                   onClick={() => {
                     deleteValue(index);
                   }}
-                >
-                  DELETE
-                </button>
-                <button
+                  src={Trash}
+                  className='icon-utils'
+                  alt='user-pencil'
+                />
+
+                <img
                   onClick={() => {
                     editValue(index);
                   }}
-                >
-                  EDIT
-                </button>
+                  src={UserPencil}
+                  className='icon-utils'
+                  alt='user-pencil'
+                />
               </div>
             </div>
           );

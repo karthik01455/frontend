@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './collectionTypes.css';
 import { CollectionDataContext } from '../../contexts/CollectionData';
 import { ContentTypeDataContext } from '../../contexts/ContentTypeData';
@@ -11,7 +11,7 @@ import {
 } from '../../constants/apiEndPoints';
 
 export default function CollectionTypes() {
-  const { emailId, setEmailId } = useContext(LoginDataContext);
+  const { emailId } = useContext(LoginDataContext);
   useEffect(() => {
     makeRequest(CONTENT_TYPE_BACKEND_URL, GET_ALL_CONTENT_TYPE, {}).then(
       (res) => {
@@ -29,20 +29,14 @@ export default function CollectionTypes() {
     );
   }, [emailId]);
 
-  const { collectionData, setcollectionData } = useContext(
-    CollectionDataContext
-  );
-  const { collectionSelected, setCollectionSelected } = useContext(
-    CollectionDataContext
-  );
+  const { setcollectionData } = useContext(CollectionDataContext);
+  const { setCollectionSelected } = useContext(CollectionDataContext);
   const { contentTypeList, setcontentTypeList } = useContext(
-    CollectionDataContext
-  );
-  const { contentTypeSelected, setcontentTypeSelected } = useContext(
     ContentTypeDataContext
   );
+  const { setcontentTypeSelected } = useContext(ContentTypeDataContext);
 
-  const { contentType, setcontentType } = useContext(CollectionDataContext);
+  const { setcontentType } = useContext(CollectionDataContext);
   const handleClickContentTypeBuilder = () => {
     setcontentTypeSelected(true);
     ``;
@@ -63,27 +57,31 @@ export default function CollectionTypes() {
       setCollectionSelected(true);
     });
   };
+
   return (
     <div className='collection-type-container'>
-      <div className='clt-header'>
+      <div className='collection-types-header'>
         <h2>CMS+</h2>
       </div>
-      <div className='clt-list'>
-        <div className='clt-list-heading'>COLLECTION TYPES</div>
+      <div className='collection-types-list'>
+        <div className='collection-types-list-heading'>COLLECTION TYPES</div>
         {contentTypeList &&
           contentTypeList.map((item) => {
             return (
-              <div key={item.id} className='clt-list-container'>
+              <div key={item.id} className='collection-types-list-container'>
                 <div
                   key={item.id}
-                  className='clt-list-item'
+                  className='collection-types-list-item'
                   onClick={() => {
                     handleClickContentType(item);
                   }}
                 >
                   {' '}
                   <div className='dot' />
-                  <div className='clt-name'> {item.contentTypeName}</div>
+                  <div className='collection-types-name'>
+                    {' '}
+                    {item.contentTypeName}
+                  </div>
                 </div>
               </div>
             );

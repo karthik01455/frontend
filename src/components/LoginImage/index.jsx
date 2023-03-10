@@ -8,7 +8,10 @@ export default function LoginImage() {
       <div className='login-text'>
         <LoginText />
       </div>
-      <div className='login-image-container'>
+      <div className='login-image-container' data-testid='login-image'>
+        <div className='login-image-circle'></div>
+        <div className='login-image-circle-1'></div>
+        <div className='login-image-circle-2'></div>
         <img src={LoginDraw} alt='Login' className='login-image' />
       </div>
     </div>

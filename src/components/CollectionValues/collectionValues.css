@@ -1,11 +1,11 @@
-.cv-container {
+.collection-values-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100%;
   background-color: rgb(203, 198, 227);
 }
-.cv-header {
+.collection-values-header {
   display: flex;
   flex-direction: row;
   height: 70px;
@@ -13,7 +13,7 @@
   padding-left: 3%;
   align-items: center;
 }
-.cv-info {
+.collection-values-info {
   display: flex;
   flex-direction: row;
   height: 10%;
@@ -32,7 +32,7 @@
   justify-content: center;
   align-items: center;
 }
-.cv-table-header {
+.collection-values-table-header {
   display: flex;
   flex-direction: row;
   height: 50px;
@@ -42,21 +42,21 @@
   background-color: rgb(203, 198, 227);
   justify-content: space-between;
 }
-.cv-table-header-left {
+.collection-values-table-header-left {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   column-gap: 100px;
   align-items: center;
 }
-.cv-table-header-right {
+.collection-values-table-header-right {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   /* align-content: center; */
   align-self: center;
 }
-.cv-table {
+.collection-values-table {
   display: flex;
   flex-direction: column;
   height: 70%;
@@ -67,12 +67,13 @@
   align-items: center;
   background-color: rgb(203, 198, 227);
 }
-.cv-table-item {
+.collection-values-table-item {
   display: flex;
   flex-direction: row;
   height: 50px;
-  width: 95%;
+  width: 92%;
   border-radius: 10px;
+  margin-left: 1%;
   justify-content: space-between;
   align-items: center;
   background-color: white;
@@ -81,7 +82,7 @@
   margin-bottom: 10px;
   margin-top: 10px;
 }
-.cv-modal {
+.collection-values-modal {
   z-index: 1000;
   position: absolute;
   display: flex;
@@ -94,7 +95,7 @@
   justify-content: flex-start;
   align-items: center;
 }
-.cv-modal-header {
+.collection-values-modal-header {
   display: flex;
   flex-direction: row;
   height: 70px;
@@ -104,28 +105,28 @@
   margin-bottom: 25px;
   margin-top: 15px;
 }
-.cv-modal-body-item {
+.collection-values-modal-body-item {
   display: flex;
   flex-direction: row;
   justify-self: center;
 }
-.cv-modal-body-item {
+.collection-values-modal-body-item {
   display: flex;
   flex-direction: column;
   justify-self: center;
 }
-.cv-modal-body-item-input {
+.collection-values-modal-body-item-input {
   display: flex;
   flex-direction: row;
   justify-self: center;
   align-self: center;
-
+  border: rgb(26, 133, 194) solid 1px;
   width: 350px;
   height: 30px;
   margin-bottom: 25px;
   margin-top: 5px;
 }
-.cv-modal-body-field {
+.collection-values-modal-body-field {
   display: flex;
   flex-direction: row;
   justify-self: center;
@@ -133,7 +134,7 @@
   width: 350px;
   height: 20px;
 }
-.cv-modal-footer {
+.collection-values-modal-footer {
   position: fixed;
   width: 500px;
   display: flex;
@@ -143,4 +144,36 @@
   bottom: 0;
   height: 50px;
   margin-right: 50px;
+}
+.collection-values-modal-footer-button {
+  margin-top: 10%;
+  background-image: linear-gradient(
+    to right,
+    #a254e7 0%,
+    #8031ad 51%,
+    #6c2c7e 100%
+  );
+  font-family: Montserrat;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  height: 25px;
+  width: 100px;
+  font-size: small;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.icon-utils {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.content-box {
+  width: 60px;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

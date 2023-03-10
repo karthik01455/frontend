@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-import React, { createContext, useEffect, useState, useContext } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import makeRequest from '../utils/makeRequest';
 
 import {
   CONTENT_TYPE_BACKEND_URL,
-  GET_COLLECTIONS_BY_CONTENT_TYPE_ID,
   GET_ALL_CONTENT_TYPE,
 } from '../constants/apiEndPoints';
 export const ContentTypeDataContext = createContext({});
 
 export function ContentTypeDataProvider({ children }) {
   const [contentTypeSelected, setcontentTypeSelected] = useState(false);
+  const [contentValueSelected, setcontentValueSelected] = useState(false);
 
   const [contentTypeList, setcontentTypeList] = useState(null);
   const [contentType, setcontentType] = useState(null);
@@ -41,6 +41,8 @@ export function ContentTypeDataProvider({ children }) {
         contentTypeList,
         setcontentTypeList,
         contentType,
+        contentValueSelected,
+        setcontentValueSelected,
         setcontentType,
         contentTypeData,
         setcontentTypeData,

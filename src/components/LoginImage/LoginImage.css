@@ -5,17 +5,17 @@
 }
 .login-image-container {
   width: 100%;
-  height: 50%;
-  background-color: rgb(203, 198, 227);
+  height: 500px;
+  background-color: #ebeefe;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 670px;
+  height: 717px;
 }
 .login-text {
   width: 100%;
   height: 200px;
-  background-color: rgb(203, 198, 227);
+  background-color: #ebeefe;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,4 +24,42 @@
 .login-image {
   width: 700px;
   height: 500px;
+  background-color: #ebeefe;
+}
+h2,
+h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Montserrat;
+  font-weight: 900;
+}
+.login-image-circle {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 1000;
+  position: absolute;
+  top: 2%;
+  right: 40%;
+}
+.login-image-circle-2 {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 1000;
+  position: absolute;
+  top: 20%;
+  right: 50%;
+}
+.login-image-circle-1 {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 1000;
+  position: absolute;
+  bottom: 2%;
+  left: 5%;
 }

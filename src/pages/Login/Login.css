@@ -6,6 +6,7 @@
 .login-image-main {
   width: 65%;
   height: 100%;
+  background-color: rgb(203, 198, 227);
 }
 .login-form {
   width: 35%;

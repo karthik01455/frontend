@@ -9,18 +9,19 @@ import {
   CREATE_COLLECTION,
   DELETE_COLLECTION_BY_ID,
 } from '../../constants/apiEndPoints';
+import UserPencil from '../../assets/user-pencil/user-pencil3x.png';
+import Trash from '../../assets/trash/trash3x.png';
+import { LoginDataContext } from '../../contexts/LoginData';
 import makeRequest from '../../utils/makeRequest';
 import { CollectionDataContext } from '../../contexts/CollectionData';
 export default function CollectionValues() {
+  const { emailId } = useContext(LoginDataContext);
   const [contentFiels, setContentFiels] = useState([]);
-
-  const { contentType, setContentType } = useContext(CollectionDataContext);
+  const { contentType } = useContext(CollectionDataContext);
   const { collectionData, setcollectionData } = useContext(
     CollectionDataContext
   );
-  const { contentTypeList, setcontentTypeList } = useContext(
-    CollectionDataContext
-  );
+
   const [collectionList, setCollectionList] = useState({});
   useEffect(() => {
     // setContentFiels({});
@@ -41,7 +42,8 @@ export default function CollectionValues() {
         console.log('contentFiels', contentFiels);
       });
     }
-  }, [contentType]);
+  }, [contentType, emailId]);
+
   const handleCollectionListChange = (event) => {
     console.log('event', event.target.value);
 
@@ -137,31 +139,38 @@ export default function CollectionValues() {
   console.log('tableHeaders', tableHeaders);
 
   return (
-    <div className='cv-container'>
+    <div className='collection-values-container'>
       {collectionModel && (
-        <div className='cv-modal'>
-          <div className='cv-modal-header'>
+        <div className='collection-values-modal'>
+          <div className='collection-values-modal-header'>
             <h2>New {contentType && contentType.contentTypeName}</h2>
           </div>
-          <div className='cv-modal-body'>
+          <div className='collection-values-modal-body'>
             {contentFiels &&
               contentFiels.map((item) => {
                 return (
-                  <div key={item.id} className='cv-modal-body-item'>
-                    <div className='cv-modal-body-field'> {item}</div>
+                  <div
+                    key={item.id}
+                    className='collection-values-modal-body-item'
+                  >
+                    <div className='collection-values-modal-body-field'>
+                      {' '}
+                      {item}
+                    </div>
                     <input
                       name={item}
                       value={collectionList[item]}
-                      className='cv-modal-body-item-input'
+                      className='collection-values-modal-body-item-input'
                       onChange={handleCollectionListChange}
                     />
                   </div>
                 );
               })}
           </div>
-          <div className='cv-modal-footer'>
-            <div className='cv-modal-cancel'>
+          <div className='collection-values-modal-footer'>
+            <div className='collection-values-modal-cancel'>
               <button
+                className='collection-values-modal-footer-button'
                 onClick={() => {
                   setCollectionModel(false);
                   setEditCollectionValueStatus(false);
@@ -170,23 +179,33 @@ export default function CollectionValues() {
                 CANCEL
               </button>
             </div>
-            <div className='cv-modal-add'>
+            <div className='collection-values-modal-add'>
               {!editCollectionValueStatus && (
-                <button onClick={handleAddCollectionForm}>ADD</button>
+                <button
+                  className='collection-values-modal-footer-button'
+                  onClick={handleAddCollectionForm}
+                >
+                  ADD
+                </button>
               )}
               {editCollectionValueStatus && (
-                <button onClick={handleUpdateCollectionForm}>UPDATE</button>
+                <button
+                  className='collection-values-modal-footer-button'
+                  onClick={handleUpdateCollectionForm}
+                >
+                  UPDATE
+                </button>
               )}
             </div>
           </div>
         </div>
       )}
-      <div className='cv-header'>
-        {contentType && contentType.contentTypeName}
+      <div className='collection-values-header'>
+        <h2>{contentType && contentType.contentTypeName}</h2>
         {/* {contentTypeList && JSON.stringify(contentTypeList)} */}
       </div>
       {/* {collectionList && JSON.stringify(collectionList)} */}
-      <div className='cv-info'>
+      <div className='collection-values-info'>
         <div>
           <h1>{collectionData && collectionData.length} ENTRIES FOUND</h1>
         </div>
@@ -194,51 +213,60 @@ export default function CollectionValues() {
           Add a new entry
         </div>
       </div>
-      <div className='cv-table-header'>
-        <div className='cv-table-header-left'>
-          <div className='cv-table-header-item'>ID</div>
+      <div className='collection-values-table-header'>
+        <div className='collection-values-table-header-left'>
+          <div className='collection-values-table-header-item'>ID</div>
           {tableHeaders &&
             tableHeaders.map((item) => {
               return (
-                <div key={item.id} className='cv-table-header-item'>
-                  {item}
+                <div
+                  key={item.id}
+                  className='collection-values-table-header-item'
+                >
+                  <div className='content-box padding'>{item}</div>
                 </div>
               );
             })}
         </div>
-        <div className='cv-table-header-right'>Actions</div>
+        <div className='collection-values-table-header-right'>Actions</div>
       </div>
-      <div className='cv-table'>
+      <div className='collection-values-table'>
         {collectionData &&
           collectionData.map((item) => {
             return (
-              <div key={item.id} className='cv-table-item'>
+              <div key={item.id} className='collection-values-table-item'>
                 {/* {JSON.stringify(item)} */}
-                <div className='cv-table-header-left'>
-                  <div className='cv-table-item-value'>
+                <div className='collection-values-table-header-left'>
+                  <div className='collection-values-table-item-value'>
                     {contentType && contentType.id}
                   </div>
                   {tableHeaders.map((value) => (
-                    <div key={value.id} className='cv-table-item-value'>
-                      {item.content[value]}
+                    <div
+                      key={value.id}
+                      className='collection-values-table-item-value'
+                    >
+                      <div className='content-box'> {item.content[value]} </div>
                     </div>
                   ))}
                 </div>
-                <div className='cv-table-header-right'>
-                  <button
+                <div className='collection-values-table-header-right'>
+                  <img
                     onClick={() => {
                       handleEditCollectionValues(item);
                     }}
-                  >
-                    EDIT
-                  </button>
-                  <button
+                    src={UserPencil}
+                    className='icon-utils'
+                    alt='user-pencil'
+                  />
+
+                  <img
                     onClick={() => {
                       handleDeleteCollectionValues(item);
                     }}
-                  >
-                    DELETE
-                  </button>
+                    src={Trash}
+                    className='icon-utils'
+                    alt='user-pencil'
+                  />
                 </div>
               </div>
             );
