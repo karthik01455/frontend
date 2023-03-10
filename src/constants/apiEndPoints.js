@@ -1,5 +1,5 @@
-export const AUTH_BACKEND_URL = 'http://localhost:8009';
-export const CONTENT_TYPE_BACKEND_URL = 'http://localhost:8001';
+export const AUTH_BACKEND_URL = 'http://localhost:8005';
+export const CONTENT_TYPE_BACKEND_URL = 'http://localhost:8002';
 export const LOGIN = {
   url: `${AUTH_BACKEND_URL}/users/login`,
   method: 'POST',
