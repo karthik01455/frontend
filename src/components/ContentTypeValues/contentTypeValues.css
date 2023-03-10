@@ -57,6 +57,7 @@
   color: black;
   height: 60px;
   display: flex;
+  font-family: Montserrat;
   /* padding-left: 5%; */
   padding-right: 5%;
   flex-direction: row;
