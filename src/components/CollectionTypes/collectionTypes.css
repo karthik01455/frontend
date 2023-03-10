@@ -17,7 +17,7 @@
 .collection-types-list {
   width: 100%;
   height: 400px;
-  background-color: black;
+  background-color: #272727;
   color: grey;
   display: flex;
   flex-direction: column;
