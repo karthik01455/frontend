@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-color: rgb(163, 148, 219);
+  background-color: rgb(203, 198, 227);
 }
 .cv-header {
   display: flex;
@@ -35,17 +35,112 @@
 .cv-table-header {
   display: flex;
   flex-direction: row;
-  height: 10%;
-  width: 100%;
+  height: 50px;
+  width: 88%;
+  padding-left: 6%;
+  padding-right: 6%;
+  background-color: rgb(203, 198, 227);
   justify-content: space-between;
-  background-color: red;
+}
+.cv-table-header-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  column-gap: 100px;
+  align-items: center;
+}
+.cv-table-header-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  /* align-content: center; */
+  align-self: center;
 }
 .cv-table {
   display: flex;
   flex-direction: column;
   height: 70%;
-  width: 100%;
-  justify-content: center;
+  width: 94%;
+  padding-left: 3%;
+  padding-right: 3%;
+  justify-content: flex-start;
   align-items: center;
   background-color: rgb(203, 198, 227);
+}
+.cv-table-item {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 95%;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.cv-modal {
+  z-index: 1000;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 100vh;
+  background-color: white;
+  justify-content: flex-start;
+  align-items: center;
+}
+.cv-modal-header {
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  background-color: white;
+  padding-left: 3%;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  margin-top: 15px;
+}
+.cv-modal-body-item {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+}
+.cv-modal-body-item {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
+.cv-modal-body-item-input {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  align-self: center;
+
+  width: 350px;
+  height: 30px;
+  margin-bottom: 25px;
+  margin-top: 5px;
+}
+.cv-modal-body-field {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  align-self: center;
+  width: 350px;
+  height: 20px;
+}
+.cv-modal-footer {
+  position: fixed;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  justify-content: flex-end;
+  bottom: 0;
+  height: 50px;
+  margin-right: 50px;
 }
