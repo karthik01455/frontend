@@ -36,7 +36,7 @@
   background-color: rgb(203, 198, 227);
 }
 .ct-list-item {
-  width: 80%;
+  width: 70%;
   border-radius: 10px;
   background-color: white;
   color: black;
@@ -71,7 +71,7 @@
   row-gap: 20px;
 }
 .ct-list-add {
-  width: 80%;
+  width: 70%;
   border-radius: 10px;
   background-color: white;
   color: black;

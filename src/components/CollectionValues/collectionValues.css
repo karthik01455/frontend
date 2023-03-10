@@ -3,22 +3,34 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
+  background-color: rgb(163, 148, 219);
 }
 .cv-header {
   display: flex;
   flex-direction: row;
-  height: 10%;
-  width: 100%;
-  justify-content: space-between;
-  background-color: rgb(203, 198, 227);
+  height: 70px;
+  background-color: white;
+  padding-left: 3%;
+  align-items: center;
 }
 .cv-info {
   display: flex;
   flex-direction: row;
   height: 10%;
-  width: 100%;
+  width: 94%;
   justify-content: space-between;
+  padding-left: 3%;
+  padding-right: 3%;
+  align-items: center;
   background-color: rgb(203, 198, 227);
+}
+.addNewCollection {
+  display: flex;
+  flex-direction: row;
+  color: blueviolet;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
 }
 .cv-table-header {
   display: flex;

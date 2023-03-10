@@ -161,13 +161,16 @@ export default function CollectionValues() {
         {contentType && contentType.contentTypeName}
         {/* {contentTypeList && JSON.stringify(contentTypeList)} */}
       </div>
-      {collectionList && JSON.stringify(collectionList)}
+      {/* {collectionList && JSON.stringify(collectionList)} */}
       <div className='cv-info'>
-        <div>{collectionData && collectionData.length} ENTRIES FOUND</div>
         <div>
-          <button onClick={addNewCollection}>ADD NEW</button>
+          <h1>{collectionData && collectionData.length} ENTRIES FOUND</h1>
+        </div>
+        <div className='addNewCollection' onClick={addNewCollection}>
+          Add a new entry
         </div>
       </div>
+
       <div className='cv-table-header'>
         {contentFiels &&
           contentFiels.map((item) => {

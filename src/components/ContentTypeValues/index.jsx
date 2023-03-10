@@ -111,6 +111,7 @@ export default function ContentTypeValues() {
   );
   return contentTypeData ? (
     <div className='content-type-values-container'>
+      <div className='content-type-values-header'></div>
       <div
         className='content-type-modal'
         style={{ display: modal ? 'block' : 'none' }}
@@ -125,31 +126,40 @@ export default function ContentTypeValues() {
         </div>
       </div>
       <div className='ctv-header'>
-        {contentTypeData.contentTypeName}
+        <div>
+          {' '}
+          <h1> {contentTypeData.contentTypeName}</h1>
+        </div>
+
         <button onClick={addField}> Add field</button>
         <button onClick={saveContentType}>Save</button>
         <button onClick={handleEditContentTypeName}>Edit</button>
       </div>
-      <div className='ctv-count'>{contentTypeData.Types.length} fields</div>
+      <div className='ctv-count'>{contentTypeData.Types.length} Fields</div>
       <div className='ctv-list'>
         {contentTypeData.Types.map((item, index) => {
           return (
             <div key={item.id} className='ctv-list-item'>
+              <div className='ctv-list-left'>Ab</div>
               <div className='ctv-list-item-name'>{item}</div>
-              <button
-                onClick={() => {
-                  deleteValue(index);
-                }}
-              >
-                DELETE
-              </button>
-              <button
-                onClick={() => {
-                  editValue(index);
-                }}
-              >
-                EDIT
-              </button>
+              <div> text</div>
+              <div className='ctv-list-utils'>
+                {' '}
+                <button
+                  onClick={() => {
+                    deleteValue(index);
+                  }}
+                >
+                  DELETE
+                </button>
+                <button
+                  onClick={() => {
+                    editValue(index);
+                  }}
+                >
+                  EDIT
+                </button>
+              </div>
             </div>
           );
         })}
