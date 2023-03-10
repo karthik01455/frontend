@@ -1,10 +1,15 @@
 import axios from 'axios';
 import localStorage from 'localStorage';
 
-const makeRequest = async (BACKEND_URL,apiEndPoint, dynamicConfig = {}, navigate) => {
+const makeRequest = async (
+  BACKEND_URL,
+  apiEndPoint,
+  dynamicConfig = {},
+  navigate
+) => {
   // const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImF3dzEiLCJpYXQiOjE2NzgyNTE3OTIsImV4cCI6MTY3ODI1MzU5Mn0.HN7Ke5k685_JC6qzmv1J5Cz1qgoqBY7pXuPZWI-MkVI";
-const jwtToken = localStorage.getItem('jwtToken');
-console.log('jwtToken-makeRequest',jwtToken);
+  const jwtToken = localStorage.getItem('jwtToken');
+  console.log('jwtToken-makeRequest', jwtToken);
   const requestDetails = {
     baseURL: BACKEND_URL,
     url: apiEndPoint.url,
@@ -13,7 +18,6 @@ console.log('jwtToken-makeRequest',jwtToken);
     headers: {
       // add jwt token to header
       authorization: `bearer ${jwtToken}`,
-     
     },
   };
   try {

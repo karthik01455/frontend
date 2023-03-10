@@ -4,16 +4,17 @@
   height: 100vh;
   width: 100%;
   background-color: rgb(203, 198, 227);
-  padding: 2%;
+  /* padding: 2%; */
 }
 .ct-header {
   width: 100%;
-  height: 10%;
+  height: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(203, 198, 227);
+  background-color: white;
+  padding-left: 10%;
 }
 .ct-count {
   width: 100%;
@@ -23,6 +24,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: rgb(203, 198, 227);
+  padding-left: 10%;
 }
 .ct-list {
   width: 100%;
@@ -32,6 +34,19 @@
   row-gap: 10px;
   align-items: center;
   background-color: rgb(203, 198, 227);
+}
+.ct-list-item {
+  width: 80%;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  height: 60px;
+  display: flex;
+  padding-left: 5%;
+  padding-right: 5%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .content-type-moadal {
@@ -54,4 +69,20 @@
   justify-content: center;
   align-items: center;
   row-gap: 20px;
+}
+.ct-list-add {
+  width: 80%;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  height: 60px;
+  display: flex;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-bottom: 3%;
+  align-self: center;
+  color: blueviolet;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }

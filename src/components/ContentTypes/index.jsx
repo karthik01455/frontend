@@ -1,11 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './contentType.css';
 import { ContentTypeDataContext } from '../../contexts/ContentTypeData';
+import { LoginDataContext } from '../../contexts/LoginData';
 import makeRequest from '../../utils/makeRequest';
 import {
   GET_CONTENT_TYPE_BY_ID,
+  GET_COLLECTIONS_BY_CONTENT_TYPE_ID,
   CONTENT_TYPE_BACKEND_URL,
   CREATE_CONTENT_TYPE,
+  GET_ALL_CONTENT_TYPE,
 } from '../../constants/apiEndPoints';
 export default function ContentTypes() {
   const { contentTypeData, setcontentTypeData } = useContext(
@@ -23,6 +26,43 @@ export default function ContentTypes() {
   const handleChangeContentTypeModalValue = (event) => {
     setcontentTypemodalValue(event.target.value);
   };
+  const handleCount = async () => {
+    const result = await Promise.all(
+      contentTypeList.map(async (item) => {
+        const res = await makeRequest(
+          CONTENT_TYPE_BACKEND_URL,
+          GET_COLLECTIONS_BY_CONTENT_TYPE_ID(item.id)
+        );
+        return {
+          ...item,
+          count: res.length,
+        };
+      })
+    );
+    console.log('left-result', result);
+    setcontentTypeList(result);
+  };
+  // contentTypeList && handleCount();
+  const { emailId, setEmailId } = useContext(LoginDataContext);
+  useEffect(() => {
+    makeRequest(CONTENT_TYPE_BACKEND_URL, GET_ALL_CONTENT_TYPE, {}).then(
+      (res) => {
+        let contentTypeList = [];
+        res.map((item) => {
+          const value = {
+            id: item.id,
+            contentTypeName: item.contentTypeName,
+          };
+          contentTypeList.push(value);
+        });
+        setcontentTypeList(contentTypeList);
+        console.log('contentTypeList', contentTypeList);
+      }
+    );
+  }, [emailId]);
+  useEffect(() => {
+    handleCount();
+  }, [emailId]);
   const closeModal = () => {
     makeRequest(CONTENT_TYPE_BACKEND_URL, CREATE_CONTENT_TYPE, {
       data: {
@@ -76,8 +116,10 @@ export default function ContentTypes() {
   return (
     <div className='content-type-container'>
       <div className='ct-header'>Content Types</div>
-      <div className='ct-count'></div>
-      <button onClick={addContentType}>Add</button>
+      <div className='ct-count'>
+        {contentTypeList && contentTypeList.length} Types
+      </div>
+      {/* <button onClick={addContentType}>Add</button> */}
       <div
         className='content-type-modal'
         style={{ display: contentTypemodal ? 'block' : 'none' }}
@@ -91,25 +133,27 @@ export default function ContentTypes() {
           <button onClick={closeModal}>Add</button>
         </div>
       </div>
+      <div className='ct-list-add' onClick={addContentType}>
+        + New Type
+      </div>
       <div className='ct-list'>
         {contentTypeList &&
           contentTypeList.map((item) => {
             return (
               <div
                 key={item.id}
-                style={{
-                  color:
-                    item.id === contentType && contentType.id
-                      ? 'white'
-                      : 'black',
-                }}
                 className='ct-list-item'
+                style={{
+                  backgroundColor:
+                    item.id === (contentType && contentType.id)
+                      ? 'blueviolet'
+                      : 'white',
+                }}
                 onClick={() => {
                   handleClickContentType(item);
                 }}
               >
-                {item.contentTypeName}
-                {item.count}C
+                {item.contentTypeName} <div>{item.count}</div>
               </div>
             );
           })}

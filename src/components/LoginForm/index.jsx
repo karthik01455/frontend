@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './LoginForm.css';
 import FormInput from '../../components/FormInput';
 import makeRequest from '../../utils/makeRequest';
@@ -9,7 +9,12 @@ import {
   LOGIN,
 } from '../../constants/apiEndPoints';
 
+import { useNavigate } from 'react-router-dom';
+import { LoginDataContext } from '../../contexts/LoginData';
+
 export default function LoginForm() {
+  const navigate = useNavigate();
+  const { emailId, setEmailId } = useContext(LoginDataContext);
   const inputs = [
     {
       id: 1,
@@ -72,7 +77,6 @@ export default function LoginForm() {
     }
     makeRequest(AUTH_BACKEND_URL, LOGIN, {
       data: {
-        userName: fields.userName,
         emailId: fields.email,
         password: fields.password,
       },
@@ -80,6 +84,8 @@ export default function LoginForm() {
       console.log('res-token', res);
       localStorage.setItem('jwtToken', res);
       console.log('local storage', localStorage.getItem('jwtToken'));
+      setEmailId(fields.email);
+      navigate(`/Home`);
     });
   };
 

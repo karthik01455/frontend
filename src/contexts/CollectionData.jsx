@@ -32,25 +32,6 @@ export function CollectionDataProvider({ children }) {
     );
   }, []);
 
-  const handleCount = async () => {
-    const result = await Promise.all(
-      contentTypeList.map(async (item) => {
-        const res = await makeRequest(
-          CONTENT_TYPE_BACKEND_URL,
-          GET_COLLECTIONS_BY_CONTENT_TYPE_ID(item.id)
-        );
-        return {
-          ...item,
-          count: res.length,
-        };
-      })
-    );
-    console.log('left-result', result);
-    setcontentTypeList(result);
-  };
-
-  contentTypeList && handleCount();
-
   return (
     <CollectionDataContext.Provider
       value={{
